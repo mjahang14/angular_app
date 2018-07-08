@@ -1,0 +1,3 @@
+ This file is created on master and will be commited here only. After that Master will be 1 commit ahead of new_build branch
+ Then we will merge master to new_branch: This is called fast fwd merge. Check UI tool at git-school.github.io/visualizing-git
+
