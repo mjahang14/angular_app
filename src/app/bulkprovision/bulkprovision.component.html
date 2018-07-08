@@ -1,0 +1,105 @@
+<form class="form-signin" role="form" >  
+  <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs" style="background-color:#0089D4;height: 200%;width: 15%;">
+          <img src = "../assets/cisco.PNG" style="text-align: center;padding: 5;">
+          <br><br>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                  <a routerLink="/mainscreen">
+                    <font color = "white">Home</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="this.authService.openDashboard($event)">
+                    <font color = "white">Dash Board</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/home">
+                    <font color = "white">Service Provisioning</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/topology">
+                    <font color = "white">Service Topology</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/services">
+                    <font color = "white">Service Inventory</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/bulk">
+                    <font color = "white">Bulk Provisioning</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                    <a href="#" (click)="this.authService.logout()">                        
+                    <font color = "white">Logout</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+              </ul>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+    </div>
+             
+    <div class="col-sm-9">        
+     <!-- New Line--> 
+    <div id="panel-group">
+        <div class="panel-heading" >
+            <h5 class="panel-title">
+                Bulk Service Provision
+            </h5>              
+        </div>
+        <div>
+            <table class="table" >
+                <tr>
+                    <td><input type="file" id="photo" (change)="fileChangeEvent($event)" placeholder="Upload file..." /></td>
+                    <td><button type="button" (click)="upload()">Upload</button> </td>
+                </tr>
+            </table>
+        </div> 
+    <!--end-->
+    <!--iterate filelist-->
+      <div *ngIf ="filelist!=null">
+        <div class="panel panel-default" *ngFor="let filename of filelist">
+            <div id="collapse1" class="panel-collapse" [class.collapse]='current != i'>
+                <table class="table" >
+                    <tr>
+                        <td>{{filename}}</td>
+                        <td><button class="btn btn-default vmsButton" 
+                                    (click)="validate($event,filename)">
+                                    Validate
+                            </button>
+                        </td>
+                        <td><button class="btn btn-default vmsButton" 
+                                    (click)="nsodryrun($event,filename)">
+                                    DryRun
+                            </button>
+                        </td>
+                        <td><button class="btn btn-default vmsButton" 
+                                    (click)="commit($event,filename)">
+                                    Commit
+                            </button>
+                        </td>                        
+                    </tr>
+                </table>
+            </div>
+        </div> 
+    </div>
+    </div> 
+    <!--iterate filelist end-->    
+    </div>
+  </div>  
+</div>          
+</form>
+<!-- /#wrapper -->

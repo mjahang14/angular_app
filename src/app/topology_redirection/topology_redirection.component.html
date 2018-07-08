@@ -1,0 +1,58 @@
+
+<head>
+
+<h1> Rebuilding the topology </h1>
+
+</head>
+
+  <div class="container-fluid" >
+      <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs" style="background-color:#0089D4;height: 200%;width: 15%;">
+          <img src = "../assets/cisco.PNG" style="text-align: center;padding: 5;">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                  <a routerLink="/mainscreen">
+                    <font color = "white">Home</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="this.authService.openDashboard()">
+                    <font color = "white">Dash Board</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/home">
+                    <font color = "white">Service Provisioning</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="topology.html">
+                    <font color = "white">Service Topology</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                    <a routerLink="/services">
+                    <font color = "white">Service Inventory</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                    <a href="#" (click)="this.authService.logout()">
+                    <font color = "white">Logout</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+              </ul>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+  </div>  
+ 
+  </div>
+  </div>
+
+
+

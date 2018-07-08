@@ -1,0 +1,529 @@
+<form class="form-create" role="form" [formGroup]="complexForm" (submit)="createOLT(complexForm.value)">
+    <div class="container-fluid">
+        <div class="row content">
+          <div class="col-sm-3 sidenav hidden-xs" style="background-color:#0089D4;height: 200%;width: 15%;">
+            <img src = "../assets/cisco.PNG" style="text-align: center;padding: 5;">
+              <ul class="nav nav-pills nav-stacked">
+                  <li class="active">
+                    <a routerLink="/mainscreen">
+                      <font color = "white">Home</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" (click)="this.authService.openDashboard($event)">
+                      <font color = "white">Dash Board</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/home">
+                      <font color = "white">Service Provisioning</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/topology">
+                      <font color = "white">Service Topology</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                      <a routerLink="/services">
+                      <font color = "white">Service Inventory</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/bulk">
+                      <font color = "white">Bulk Provisioning</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+				  <li>
+				<a href="https://www.google.co.in/?gfe_rd=cr&dcr=0&ei=hySqWsX0BeeL8Qe8xKqgAg" target="_blank">
+				<font color = "white">References</font>
+                    <span class="pull-right"></span>
+					</a>
+				</li>
+                  <li>
+                      <a href="#" (click)="this.authService.logout()">
+                      <font color = "white">Logout</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                </ul>
+              <br><br><br><br><br><br>
+              <br><br><br><br><br><br>
+    </div>
+    <div class="col-sm-9">
+    <br><br>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default shadow" id="panel1" 
+            style="margin-left:5rem;border: 0.1rem #CCCCCC solid;padding-bottom: 2rem;width: 70%">
+          <div class="panel-heading">
+            <h4 class="panel-title"> 
+              <b>OLT Provision</b>         
+            </h4>
+          </div>
+          <div class="panel-body">
+           <div class="row" style = "margin-left:25px">
+              <section class="col-md-12" style="margin-top: 0;padding-top: 0">
+                  <div class="input-group" 
+                  [ngClass]="{'has-error':!complexForm.controls['name'].valid && 
+                  complexForm.controls['name'].touched}">
+                      <span class="input-group-addon">Infrastructure ID</span>
+                      <select class="form-control" 
+                       name= "name" id="name" 
+                      [formControl]="complexForm.controls['name']" style="width:300px;">
+                        <option *ngFor= "let infraService of infraserviceid" value={{infraService.name}}>{{infraService.name}}</option>
+                      </select>
+					  <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Infrastructure Service ID</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>Unique service ID for infra. </p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                    </div>
+                    <div class="alert alert-danger" 
+                    *ngIf="complexForm.controls['name'].hasError('required') 
+                    && complexForm.controls['name'].touched">
+                        Infrastructure Service ID is required</div>
+                    <div class="input-group"
+                    [ngClass]="{'has-error':!complexForm.controls['id'].valid && 
+                    complexForm.controls['id'].touched}">
+                      <span class="input-group-addon" >OLT Id                   
+                      </span>
+                      <input type="number"
+                             name= "id" id="id" class="form-control" 
+                             [formControl]="complexForm.controls['id']" style="width:300px;">
+						 <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">OLT Id</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>Unique ID for OLT device. (numeric)</p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                    
+					
+					
+					
+					
+					</div>
+                    <div class="alert alert-danger" 
+                          *ngIf="complexForm.controls['id'].hasError('required') 
+                                && complexForm.controls['id'].touched">
+                                OLT Id is required
+                    </div> 
+                    <div class="alert alert-danger" 
+                        *ngIf="(complexForm.controls['id'].hasError('min') ||
+                                  complexForm.controls['id'].hasError('max'))
+                                && complexForm.controls['id'].touched">
+                            OLT Id is not in range</div>
+                    <div class="input-group" >
+                        <span class="input-group-addon">OLT Type</span>
+                        <select class="form-control" 
+                        id="name" required>
+                          <option value="TIBIT">TIBIT</option>
+                        </select>
+						<div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">OLT Type</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p> The type of OLT device like Tibit , SumiTomo .</p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                      </div>
+                    <div class="input-group"
+                    [ngClass]="{'has-error':!complexForm.controls['oltmac'].valid && 
+                    complexForm.controls['oltmac'].touched}">
+                      <span class="input-group-addon" >
+                        OLT MAC
+                      </span>
+                      <input type="text" class="form-control"  
+                       name= "oltmac" 
+                        id="oltmac"  
+                        [formControl]="complexForm.controls['oltmac']" style="width:300px;">
+						<div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">OLT MAC</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p> MAC address of the OLT device .</p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                    </div>
+                    <div 
+                      *ngIf="complexForm.controls['oltmac'].hasError('required') 
+                      && complexForm.controls['oltmac'].touched" 
+                      class="alert alert-danger">OLT MAC is required
+                    </div>
+                    <div 
+                      *ngIf="complexForm.controls['oltmac'].hasError('pattern') 
+                            && complexForm.controls['oltmac'].touched" 
+                        class="alert alert-danger">OLT MAC pattern doesn't match.
+                    </div>
+                    <div class="input-group"
+                    [ngClass]="{'has-error':!complexForm.controls['svlan'].valid && 
+                    complexForm.controls['svlan'].touched}">
+                      <span class="input-group-addon" >
+                        SVLAN
+                      </span>
+                      <input type="number" 
+                              class="form-control" name= "svlan" id="svlan" 
+                              [formControl]="complexForm.controls['svlan']" style="width:300px;">
+							  <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">SVLAN</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>  Outer VLAN tag </p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                    </div>
+                    <div class="alert alert-danger" 
+                          *ngIf="complexForm.controls['svlan'].hasError('required') 
+                          && complexForm.controls['svlan'].touched">
+                        SVLAN is required</div>
+                    <div class="alert alert-danger" 
+                        *ngIf="(complexForm.controls['svlan'].hasError('min') ||
+                                  complexForm.controls['svlan'].hasError('max'))
+                                && complexForm.controls['svlan'].touched">
+                            SVlan is not in range</div>
+                    <div class="input-group"
+                        [ngClass]="{'has-error':!complexForm.controls['eanid'].valid && 
+                        complexForm.controls['eanid'].touched}">
+                        <span class="input-group-addon" >
+                          EAN Node Id(Towards OLT)
+                        </span>
+                        <input type="text" 
+                                class="form-control" name= "eanid" id="eanNodeId" 
+                                [formControl]="complexForm.controls['eanid']" style="width:300px;">
+								<div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EAN Node Id(Towards OLT)</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>  Ethernet Agregation node assoicated with OLT  </p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                      </div>
+                      <div class="alert alert-danger" 
+                          *ngIf="complexForm.controls['eanid'].hasError('required') 
+                                  && complexForm.controls['eanid'].touched">
+                          EAN Node Id(Towards OLT) is required</div>
+                    <div class="input-group" 
+                         [ngClass]="{'has-error':!complexForm.controls['eanport'].valid && 
+                                    complexForm.controls['eanport'].touched}">
+                      <span class="input-group-addon" >
+                        EAN Node Port(Towards OLT)
+                      </span>
+                      <input type="text" 
+                              class="form-control" name= "eanport" id="eanNodePort" 
+                              [formControl]="complexForm.controls['eanport']" style="width:300px;">
+							  <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EAN Node Port(Towards OLT)</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>    Port name for EAN node. (Example : GigabitEthernet0/0/2) </p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                    </div>
+                    <div class="alert alert-danger" 
+                          *ngIf="complexForm.controls['eanport'].hasError('required') 
+                            && complexForm.controls['eanport'].touched">
+                      EAN Node Port(Towards OLT) is required</div>
+                    <div class="input-group" 
+                         [ngClass]="{'has-error':!complexForm.controls['address'].valid && 
+                                    complexForm.controls['address'].touched}">
+                      <span class="input-group-addon" >
+                        Address
+                      </span>
+                      <input type="text" 
+                              class="form-control" 
+                              [formControl]="complexForm.controls['address']"
+                              name= "address"  id="address" style="width:300px;">
+							  <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Address</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>   The geographical location for the OLT device. </p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+                    </div>
+                    <div class="alert alert-danger" 
+                          *ngIf="complexForm.controls['address'].hasError('required') 
+                           && complexForm.controls['address'].touched">
+                        Address is required</div>
+                    <div class="input-group" 
+                         [ngClass]="{'has-error':!complexForm.controls['loopbackIP'].valid && 
+                          complexForm.controls['loopbackIP'].touched}">
+                      <span class="input-group-addon" >
+                        EAN node Loopback IP
+                      </span>
+                      <input type="text" 
+                              class="form-control"  
+                              name= "loopbackIP" 
+                              id="loopbackIP"
+                              [formControl]="complexForm.controls['loopbackIP']" style="width:300px;">
+ <div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">help</button>-->
+  
+  <a href="#myModal1" role="button" data-toggle="modal">
+
+<img src="../assets/info_button.jpg" ></a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EAN node Loopback IP</h4>
+        </div>
+        <div class="modal-body">
+          
+		  <p>   Loopback IP for the EAN device . </p>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>							 
+                    </div>
+                    <div class="alert alert-danger" 
+                         *ngIf="complexForm.controls['loopbackIP'].hasError('required') 
+                          && complexForm.controls['loopbackIP'].touched">
+                        Loopback Ip is required</div> 
+                    <div 
+                        *ngIf="complexForm.controls['loopbackIP'].hasError('pattern') 
+                              && complexForm.controls['loopbackIP'].touched" 
+                          class="alert alert-danger">Loopback address is not valid.
+                    </div>   
+              </section> 
+              </div>
+          </div>
+        </div> 
+      </div> 
+    </div>
+  </div></div>
+  <div style="text-align:right;padding-right:2%;padding-bottom: 200%;">
+      <button class="btn btn-default vmsButton" (click)="clearValue($event,complexForm)" >Clear</button>
+      <button class="btn btn-primary vmsButton"  [disabled]="!complexForm.valid">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,159 @@
+<form class="form-create" id="form-register"  >
+    <div class="container-fluid">
+        <div class="row content">
+          <div class="col-sm-3 sidenav hidden-xs" style="background-color:#0089D4;height: 200%;width: 15%;">
+            <img src = "../assets/cisco.PNG" style="text-align: center;padding: 5;">
+              <ul class="nav nav-pills nav-stacked">
+                  <li >
+                    <a routerLink="/mainscreen">
+                      <font color = "white">Home</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" (click)="this.authService.openDashboard($event)">
+                      <font color = "white">Dash Board</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/home">
+                      <font color = "white">Service Provisioning</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/topology">
+                      <font color = "white">Service Topology</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li class="active">
+                      <a routerLink="/services" >
+                      <font color = "white">Service Inventory</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/bulk">
+                      <font color = "white">Bulk Provisioning</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+				  <li>
+				<a href="https://www.google.co.in/?gfe_rd=cr&dcr=0&ei=hySqWsX0BeeL8Qe8xKqgAg" target="_blank">
+				<font color = "white">References</font>
+                    <span class="pull-right"></span>
+					</a>
+				</li>
+                  <li>
+                      <a href="#" (click)="this.authService.logout()">
+                      <font color = "white">Logout</font>
+                      <span class="pull-right"></span>
+                    </a>
+                  </li>
+                </ul>
+              <br><br><br><br><br><br>
+              <br><br><br><br><br><br>
+    </div>  
+    <div class="col-sm-9">
+      <br><br>
+      <div id="panel-group">
+          <div class="panel panel-default" *ngFor="let item of items; let i = index">
+            <div class="panel-heading" >
+              <h5 class="panel-title">
+                {{item.title}}
+              </h5>              
+            </div>
+            <div id="collapse1" class="panel-collapse" [class.collapse]='current != i'>
+              <div  *ngIf="item.infradetails!=null">
+                <table class="table" >
+                  <tr>
+                      <th>Device name</th>
+                      <th>Bng Id</th>
+                      <th>Bng Port</th>
+                      <th>Volt id</th>
+                      <th>EAN id</th>
+                      <th>EAN port</th>
+                      <th>BNG policy</th>
+                      <th>SMS Ip </th>
+                  </tr>
+                  <tr *ngFor="let infra of item.infradetails let i = index">
+                      <a href="#" (click)="openservicelist($event,infra.name)">
+                      <td>{{infra.name}}</td> </a>
+                      <td>{{infra['bng-id']}}</td>
+                      <td>{{infra['bng-port']}}</td>
+                      <td>{{infra['volt-id']}}</td>
+                      <td>{{infra['ean-id']}}</td>
+                      <td>{{infra['ean-port']}}</td>
+                      <td>{{infra['bng-policy']}}</td>
+                      <td>{{infra['subscriber-mgmt-id'] }}</td> 
+                      <td>
+                        <a href="#" (click)="editInfra($event,infra.name)">
+                          <span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="#" (click)="deleteInfra($event,infra.name,i)">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                      </td>                    
+                  </tr>
+                </table>
+                </div>
+                <div *ngIf ="oltservices!=null || subServices!=null ">
+                  <table class="table" >
+                        <tr><th>Olt's and Subscriber's for deviceid {{serviceid}}</th></tr>
+                  </table>
+                  <table class="table" id="olt">                    
+                    <tr>
+                      <th>OLt id</th>
+                      <th>OLT MAC</th>
+                      <th>SVLAN</th>
+                      <th>EAN ID</th>
+                      <th>EAN Port</th>
+                      <th>Loopback Ip</th>                          
+                    </tr>
+                    <tr *ngFor="let olt of oltservices let i = index" >
+                      <td>{{olt['olt_id']}}</td>                                                  
+                      <td>{{olt['olt_mac']}}</td>
+                      <td>{{olt['s-vlan']}}</td>
+                      <td>{{olt['ean-id']}}</td>
+                      <td>{{olt['ean-port']}}</td>
+                      <td>{{olt['loopback_ip']}}</td>
+                      <td>
+                        <a href="#" (click)="editOLT($event,serviceid,olt['olt_id'])">
+                          <span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="#" (click)="deleteOLT($event,serviceid,olt['olt_id'],i)">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </a> 
+                      </td>                         
+                    </tr>
+                  </table>
+                  <table class="table" id="subscriber">
+                    <tr>
+                      <th>Subscriber id</th>
+                      <th>Username</th>
+                      <th>RG Mac</th>
+                      <th>CVlan</th>
+                      <th>SVLan</th>                                            
+                    </tr>
+                    <tr *ngFor="let sub of subServices let i = index" >
+                      <td>{{sub['subscriber_id']}}</td>
+                      <td>{{sub['username']}}</td>
+                      <td>{{sub['rg-mac']}}</td>
+                      <td>{{sub['c-vlan']}}</td>
+                      <td>{{sub['s-vlan']}}</td>
+                      <td> 
+                      <a href="#" (click)="editSub($event,serviceid,sub['subscriber_id'])">
+                          <span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="#" (click)="deleteSub($event,serviceid,sub['subscriber_id'],i)">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                        </td>                                                   
+                    </tr>
+                  </table>              
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>    
+      </div></div>    
+      </form>

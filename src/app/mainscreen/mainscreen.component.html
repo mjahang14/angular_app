@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-3 sidenav hidden-xs" style="background-color:#0089D4;height: 200%;width: 15%;">        
+          <img src = "../assets/cisco.PNG" style="text-align: center;padding: 5;">
+          <br><br><br><br><br><br>
+          <br><br><br><br><br><br>
+          <br><br><br><br><br><br>
+          <br><br><br><br><br><br>
+          <br><br><br><br><br><br>
+      </div>
+      <div class="col-sm-9">
+          <table class="table" >
+            <tr>
+              <td>
+                  <a routerLink="/home"><img src = "../assets/voltPro.png" ></a>
+              </td>
+              <td>
+                  <a routerLink="/topology"><img src = "../assets/topology.png" ></a>
+              </td>
+              <td>
+                <a href="#" (click)="this.authService.openDashboard($event)"><img src = "../assets/dashboard.png"></a> 
+              </td>
+              <td>
+                 <a routerLink="/services"> <img src = "../assets/serviceinventory.png" ></a>
+              </td>
+            </tr>
+          </table>     
+      </div>
+    </div>
+  </div>

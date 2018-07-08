@@ -1,0 +1,86 @@
+<form class="form-signin" role="form" >  
+  <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs" style="background-color:#0089D4;height: 200%;width: 15%;">
+          <img src = "../assets/cisco.PNG" style="text-align: center;padding: 5;">
+          <br><br>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                  <a routerLink="/mainscreen">
+                    <font color = "white">Home</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="this.authService.openDashboard($event)">
+                    <font color = "white">Dash Board</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/home">
+                    <font color = "white">Service Provisioning</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/topology">
+                    <font color = "white">Service Topology</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/services">
+                    <font color = "white">Service Inventory</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/bulk">
+                    <font color = "white">Bulk Provisioning</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+				<li>
+				<a href="https://www.google.co.in/?gfe_rd=cr&dcr=0&ei=hySqWsX0BeeL8Qe8xKqgAg" target="_blank">
+				<font color = "white">References</font>
+                    <span class="pull-right"></span>
+					</a>
+				</li>
+                <li>
+                    <a href="#" (click)="this.authService.logout()">                        
+                    <font color = "white">Logout</font>
+                    <span class="pull-right"></span>
+                  </a>
+                </li>
+              </ul>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+    </div>
+             
+    <div class="col-sm-9">        
+          <!-- Default panel contents -->
+      <h2>VOLT-HA  Service Provision</h2>
+      <br><br><br><br><br><br>
+      <!-- List group -->
+      <div class="panel panel-default">
+         <div class="list-group">
+            <div class="alert alert-danger" *ngIf="infraNotCreate">
+                Create Infrastructure service first.
+            </div>
+            <a routerLink="/infraprovision" class="list-group-item">Infrastructure Provision
+            
+            </a>
+            
+            <a href="#" (click)="forwardOLT($event)" class="list-group-item">OLT Provision
+            </a>
+            <a href="#" (click)="forwardSubscriber($event)" class="list-group-item">Subscriber Provision
+            </a>  
+        </div>
+      </div>              
+              
+     </div>
+  </div>
+</div>          
+</form>
+<!-- /#wrapper -->
